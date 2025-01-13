@@ -6,10 +6,12 @@
 //
 
 import Foundation
-import Combine
 
-class TimerData: ObservableObject {
-    @Published var timeCount = 0
+
+// 최신 SwiftUI 에서는 @Observable 로 데이터 스트림 처리가 가능
+@Observable
+class TimerData {
+    var timeCount = 0
     var timer: Timer?
     
     init() {
@@ -21,15 +23,14 @@ class TimerData: ObservableObject {
 //                                     repeats: true)
         
         // [weak self] 는 변수 캡쳐 시 ARC 카운트가 증가하지 않도록 해서, 메모리 누수를 막는다.
-//        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-//            self?.timerDidFire()
-//        }
         // [unowned self] 는 강제 언래핑된 self 키워드, 조심해서 사용해야함
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [unowned self] _ in
             self.timerDidFire()
         }
     }
     
+    // 타이머 클로저가 TimerData 인스턴스 메모리 해제 이후에 동작하지 않도록 invalidate 함수를 실행함.
+    // (unowned 사용을 위한 예시)
     deinit {
         timer?.invalidate()
     }

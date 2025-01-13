@@ -8,14 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    // @Observable 지정 객체는 @State 로 상태 관리가 가능해짐 (2024 이후)
+    @State var timerData: TimerData = TimerData()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationView {
+            VStack {
+                Text("Timer count = \(timerData.timeCount)")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding()
+                
+                Button(action: resetCount) {
+                    Text("Reset Counter")
+                }
+            }
         }
-        .padding()
+    }
+    
+    func resetCount() {
+        timerData.resetCount()
     }
 }
 
