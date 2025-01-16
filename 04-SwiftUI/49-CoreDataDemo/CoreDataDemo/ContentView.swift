@@ -8,7 +8,8 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View {@State var name: String = ""
+struct ContentView: View {
+    @State var name: String = ""
     @State var quantity: String = ""
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -49,6 +50,7 @@ struct ContentView: View {@State var name: String = ""
                             Text(product.quantity ?? "Not found")
                         }
                     }
+                    .onDelete(perform: deleteItems)
                 }
                 .navigationTitle("Product Database")
             }
@@ -58,9 +60,35 @@ struct ContentView: View {@State var name: String = ""
     }
 
     private func addProduct() {
+        withAnimation {
+            let newProduct = Product(context: viewContext)
+            newProduct.name = name
+            newProduct.quantity = quantity
+            saveContext()
+        }
     }
 
     private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            offsets.map {
+                offset in
+                products[offset]
+            }.forEach({
+                element in
+                viewContext.delete(element)
+            })
+//          offsets.map { products[$0] }.forEach(viewContext.delete)
+            saveContext()
+        }
+    }
+    
+    private func saveContext() {
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
     }
 }
 
