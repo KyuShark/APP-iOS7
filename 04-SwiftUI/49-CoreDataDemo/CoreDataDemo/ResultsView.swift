@@ -2,11 +2,12 @@
 //  ResultsView.swift
 //  CoreDataDemo
 //
-//  Created by 황규상 on 1/16/25.
+//  Created by Jungman Bae on 1/16/25.
 //
 
 import SwiftUI
 import CoreData
+
 struct ResultsView: View {
     var name: String
     var viewContext: NSManagedObjectContext
@@ -34,3 +35,4 @@ struct ResultsView: View {
         }
     }
 }
+

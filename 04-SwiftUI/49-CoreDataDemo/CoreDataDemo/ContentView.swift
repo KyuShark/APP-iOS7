@@ -13,10 +13,10 @@ struct ContentView: View {
     @State var quantity: String = ""
     
     @Environment(\.managedObjectContext) private var viewContext
-    
+
     @FetchRequest(entity: Product.entity(), sortDescriptors: [])
     private var products: FetchedResults<Product>
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -62,7 +62,7 @@ struct ContentView: View {
             .textFieldStyle(RoundedBorderTextFieldStyle())
         }
     }
-    
+
     private func addProduct() {
         withAnimation {
             let newProduct = Product(context: viewContext)
@@ -71,7 +71,7 @@ struct ContentView: View {
             saveContext()
         }
     }
-    
+
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map {
@@ -81,7 +81,7 @@ struct ContentView: View {
                 element in
                 viewContext.delete(element)
             })
-            //          offsets.map { products[$0] }.forEach(viewContext.delete)
+//          offsets.map { products[$0] }.forEach(viewContext.delete)
             saveContext()
         }
     }
