@@ -16,6 +16,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowMaterialGrid: false, // 디자이너들과 대화 할 때 유용
+      debugShowCheckedModeBanner: false, // Debug 배너 제거
     );
   }
 }
