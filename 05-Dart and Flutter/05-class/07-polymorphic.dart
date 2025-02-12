@@ -1,12 +1,12 @@
 abstract class Shape {
   double getArea();
   double getPerimerter();
-
   void draw();
 }
 
 class Circle implements Shape {
   double radius;
+
   Circle(this.radius);
 
   @override
@@ -28,6 +28,7 @@ class Circle implements Shape {
 class Rectangle implements Shape {
   double width;
   double height;
+
   Rectangle(this.width, this.height);
 
   @override

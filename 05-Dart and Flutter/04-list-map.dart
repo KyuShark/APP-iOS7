@@ -7,6 +7,7 @@ void main() {
     'February',
     'March',
   ];
+
   // 리스트에 요소 추가
   months.add('April');
 
@@ -70,7 +71,6 @@ void main() {
   };
 
   mapMonths[4] = 'April';
-
   mapMonths.forEach((key, value) {
     print('$key: $value');
   });
@@ -105,14 +105,17 @@ void main() {
     'age': 30,
     'city': 'Seoul',
   };
+
   // 키 존재 여부 확인
   if (data.containsKey('name')) {
     print('Name: ${data['name']}');
   }
+
   // 값 존재 여부 확인
   if (data.containsValue(30)) {
     print('Age: ${data['age']}');
   }
+
   // JSON 형식의 사용자 데이터
   Map<String, dynamic> user = {
     'id': 1,
@@ -124,6 +127,7 @@ void main() {
       ]
     }
   };
+
   // Map을 JSON 문자열로 변환
   String userJson = jsonEncode(user);
   print(userJson);

@@ -64,6 +64,7 @@ void main() {
   for (var i = 0; i < maxIterations; i++) {
     print('Iteration: $i');
   }
+
   // forEach loop: 배열, 리스트, 맵 등의 요소를 반복할 때 사용
   List daysOfWeek = [
     'Sunday',
@@ -74,20 +75,25 @@ void main() {
     'Friday',
     'Saturday'
   ];
+
   // 기본 함수 사용
   daysOfWeek.forEach((day) {
     print(day);
   });
+
   // forEach loop with arrow function: 람다 함수를 사용하여 간단하게 표현
   daysOfWeek.forEach((day) => print(day));
+
   // forEach loop with function reference: 함수 참조를 사용하여 간단하게 표현
   daysOfWeek.forEach(print);
 
   print(Day.values);
   print('${Day.values[0]}');
   print(Day.values.byName('mon'));
+
   // Error handling
   String name = 'Dart';
+
   try {
     print('Name: $name');
     // indexOf() 함수는 문자열에서 특정 문자의 인덱스를 반환,

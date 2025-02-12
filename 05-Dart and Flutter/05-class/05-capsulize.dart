@@ -34,10 +34,8 @@ class BankAccount {
 
 void main() {
   var account = BankAccount('123-456-789');
-
   print('계좌번호: ${account.accountNumber}');
   print('잔액: ${account.balance}');
-
   account.deposit(100.0);
   account.withdraw(50.0);
   account.withdraw(100.0);

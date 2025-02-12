@@ -9,10 +9,10 @@ class DatabaseConnection {
   factory DatabaseConnection(String connectionString) {
     // instance 가 null 일 때만 생성
     _instance ??= DatabaseConnection._internal(connectionString);
-
     // !: null safety를 무시하고 사용
     return _instance!;
   }
+
   void connect() {
     print('Connected to database with connection string: $_connectionString');
   }

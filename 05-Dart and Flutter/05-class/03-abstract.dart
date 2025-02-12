@@ -16,10 +16,8 @@ abstract class Media {
 class Book implements Media {
   @override
   late String myId;
-
   @override
   late String myTitle;
-
   @override
   late String myType;
 
@@ -68,6 +66,7 @@ class Book implements Media {
 
 void main() {
   var myBook = Book();
+
   myBook.setMediaId('1234');
   myBook.setMediaTitle('Dart Programming');
   myBook.setMediaType('Book');
