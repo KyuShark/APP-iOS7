@@ -22,10 +22,9 @@ class MyApp extends StatelessWidget {
           // 기본 색상 스키마 설정
           primarySwatch: Colors.blue,
           textTheme: TextTheme(
-            bodyLarge:
-                GoogleFonts.aBeeZee(fontSize: 30, color: Colors.deepOrange),
+            bodyLarge: GoogleFonts.lato(fontSize: 30, color: Colors.deepOrange),
             bodyMedium:
-                GoogleFonts.aBeeZee(fontSize: 18, color: Colors.grey[700]),
+                GoogleFonts.roboto(fontSize: 18, color: Colors.grey[700]),
           )),
       // 홈 페이지 설정
       // 타이틀 파라미터 전달
@@ -54,6 +53,12 @@ class _MyHomePageState extends State<MyHomePage> {
     // Scaffold 위젯: 머테리얼 디자인의 기본 레이아웃 구조를 제공
     return Scaffold(
       backgroundColor: Colors.grey,
+      appBar: AppBar(
+        title: Text(
+          'Google Fonts Example',
+          style: GoogleFonts.lato(),
+        ),
+      ),
       // body 속성에 Center 위젯을 사용하여 화면 중앙에 컨텐츠를 배치
       body: Center(
         child: Container(
