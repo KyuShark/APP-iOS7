@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -5,6 +8,29 @@ import 'package:google_fonts/google_fonts.dart';
 void main() {
   // runApp 함수를 호출하여 MyApp 위젯을 실행
   runApp(const MyApp());
+}
+
+class PlatformCheck extends StatelessWidget {
+  const PlatformCheck({Key? key}) : super(key: key);
+
+  bool get isWeb => kIsWeb;
+  bool get isMobileDevice => Platform.isAndroid || Platform.isIOS;
+  bool get isDesktop =>
+      Platform.isMacOS || Platform.isWindows || Platform.isLinux;
+  bool get isMobileDeviceOrWeb => isMobileDevice || isWeb;
+
+  @override
+  Widget build(BuildContext context) {
+    if (kIsWeb) {
+      return const Text('Running on the web!');
+    } else if (Platform.isAndroid) {
+      return const Text('Running on Android!');
+    } else if (Platform.isIOS) {
+      return const Text('Running on iOS!');
+    } else {
+      return const Text('Running on Fuchsia!');
+    }
+  }
 }
 
 // MyApp 위젯: StatelessWidget 상태관리가 필요하지 않은 단순한 형태의 위젯
@@ -22,9 +48,10 @@ class MyApp extends StatelessWidget {
           // 기본 색상 스키마 설정
           primarySwatch: Colors.blue,
           textTheme: TextTheme(
-            bodyLarge: GoogleFonts.lato(fontSize: 30, color: Colors.deepOrange),
+            bodyLarge:
+                GoogleFonts.aBeeZee(fontSize: 30, color: Colors.deepOrange),
             bodyMedium:
-                GoogleFonts.roboto(fontSize: 18, color: Colors.grey[700]),
+                GoogleFonts.aBeeZee(fontSize: 18, color: Colors.grey[700]),
           )),
       // 홈 페이지 설정
       // 타이틀 파라미터 전달
@@ -53,33 +80,106 @@ class _MyHomePageState extends State<MyHomePage> {
     // Scaffold 위젯: 머테리얼 디자인의 기본 레이아웃 구조를 제공
     return Scaffold(
       backgroundColor: Colors.grey,
-      appBar: AppBar(
-        title: Text(
-          'Google Fonts Example',
-          style: GoogleFonts.lato(),
-        ),
-      ),
       // body 속성에 Center 위젯을 사용하여 화면 중앙에 컨텐츠를 배치
-      body: Center(
-        child: Container(
-            width: 300,
-            height: 380,
-            color: Colors.white,
-            child: Center(
-              child: RichText(
-                text: TextSpan(children: [
-                  TextSpan(
-                      text: 'Hello',
-                      style: Theme.of(context).textTheme.bodyLarge),
-                  TextSpan(text: ' '),
-                  TextSpan(
-                      text: 'Flutter',
-                      style: Theme.of(context).textTheme.bodyMedium),
-                  TextSpan(text: ' '),
-                ]),
-              ),
-            )),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // PlatformCheck 위젯을 생성하여 화면에 표시
+          PlatformCheck(),
+          _buildContainer(context),
+        ],
       ),
+    );
+  }
+
+  Widget _buildContainer(BuildContext context) {
+    // kIsWeb 변수를 사용하여 현재 플랫폼이 웹인지 확인
+    if (kIsWeb) {
+      return _buildWideContainers();
+      // Platform 클래스는 현재 플랫폼을 확인하는 기능을 제공
+    } else if (Platform.isAndroid) {
+      return _buildWideContainers();
+    } else if (Platform.isIOS) {
+      return _buildNarrowContainers();
+    } else {
+      return _buildNarrowContainers();
+    }
+  }
+
+  Widget _buildWideContainers() {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            color: Colors.red,
+            child: Center(
+              child: Text(
+                'Red',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.green,
+            child: Center(
+              child: Text(
+                'Green',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.blue,
+            child: Center(
+              child: Text(
+                'Blue',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildNarrowContainers() {
+    return Column(
+      children: [
+        Container(
+          color: Colors.red,
+          height: 100,
+          child: Center(
+            child: Text(
+              'Red',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          ),
+        ),
+        Container(
+          color: Colors.green,
+          height: 100,
+          child: Center(
+            child: Text(
+              'Green',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          ),
+        ),
+        Container(
+          color: Colors.blue,
+          height: 100,
+          child: Center(
+            child: Text(
+              'Blue',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
