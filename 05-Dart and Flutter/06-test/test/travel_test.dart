@@ -20,7 +20,8 @@ void main() {
   test('Travel Distance to Miles', () {
     // Arrange
     var distance = 10.0;
-    var expectedDistanceInMiles = distance * convertToMiles;
+    var expectedDistanceInMiles =
+        distance * 0.621371; // Assuming convertToMiles is 0.621371
 
     // Act
     var travel = Travel(distance);
@@ -34,7 +35,8 @@ void main() {
   test('Travel Distance to Kilometers', () {
     // Arrange
     var distance = 10.0;
-    var expectedDistanceInKilometers = distance * convertToKilometers;
+    var expectedDistanceInKilometers =
+        distance * 1.60934; // Assuming convertToKilometers is 1.60934
 
     // Act
     var travel = Travel(distance);
