@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  UIViewDemo
+//  ImageDemo
 //
-//  Created by Jungman Bae on 3/13/25.
+//  Created by Jungman Bae on 3/17/25.
 //
 
 import UIKit
