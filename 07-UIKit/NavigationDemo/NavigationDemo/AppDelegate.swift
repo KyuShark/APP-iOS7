@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  MenuDemo
+//  NavigationDemo
 //
 //  Created by Jungman Bae on 3/18/25.
 //

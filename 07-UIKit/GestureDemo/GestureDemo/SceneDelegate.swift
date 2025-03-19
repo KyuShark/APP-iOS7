@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  MenuDemo
+//  GestureDemo
 //
 //  Created by Jungman Bae on 3/18/25.
 //
