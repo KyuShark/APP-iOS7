@@ -2,9 +2,8 @@
 //  GridItem.swift
 //  CollectionViewDemo
 //
-//  Created by 황규상 on 3/24/25.
+//  Created by Jungman Bae on 3/24/25.
 //
-
 import Foundation
 
 struct GridItem: Hashable {
