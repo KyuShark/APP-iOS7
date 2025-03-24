@@ -94,13 +94,22 @@ class ViewController: UIViewController {
     // 1. 현재 스냅샷 가져오기
     var snapshot = dataSource.snapshot()
     
-    // 2. 새 아이템 생성
+    // 2. 섹션이 없으면 추가
+    if snapshot.sectionIdentifiers.isEmpty {
+      snapshot.appendSections([.main])
+    }
+    
+    // 3. 새 아이템 생성
     let newItem = Item(title: "New \(Date().timeIntervalSince1970)")
     
-    // 3. 스냅샷에 아이템 추가
-    snapshot.insertItems([newItem], beforeItem: snapshot.itemIdentifiers.first!)
+    // 4. 아이템 추가 로직
+    if snapshot.itemIdentifiers.isEmpty {
+      snapshot.appendItems([newItem], toSection: .main)
+    } else {
+      snapshot.insertItems([newItem], beforeItem: snapshot.itemIdentifiers.first!)
+    }
     
-    // 4. 스냅샷 적용
+    // 5. 스냅샷 적용
     dataSource.apply(snapshot, animatingDifferences: true)
   }
   
