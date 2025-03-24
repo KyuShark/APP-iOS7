@@ -131,7 +131,22 @@ extension ViewController: UITableViewDelegate {
     tableView.deselectRow(at: indexPath, animated: true)
     let item = dataSource.itemIdentifier(for: indexPath)!
     print("Selected item: \(item)")
-    deleteItem(item)
+  }
+  
+  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completion) in
+      guard let self = self else { return }
+      if let item = self.dataSource.itemIdentifier(for: indexPath) {
+        self.deleteItem(item)
+      }
+      completion(true)
+    }
+    
+    deleteAction.image = UIImage(systemName: "trash")
+    deleteAction.backgroundColor = .systemRed
+    
+    let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+    return configuration
   }
 }
 
