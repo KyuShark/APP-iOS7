@@ -134,4 +134,7 @@ iOSInjectionProject/
 ### DS_Store ###
 *./DS_Store
 
+### DerivedData ###
+**/DerivedData/
+
 # End of https://www.toptal.com/developers/gitignore/api/xcode,macos,swift
